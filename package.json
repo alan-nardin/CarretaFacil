@@ -1,0 +1,17 @@
+{
+  "name": "carretafacil",
+  "version": "1.0.0",
+  "description": "API do projeto CarretaFacil para monitoramento de carretas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nardin, Alan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7",
+    "sqlite3": "^4.0.4"
+  }
+}
