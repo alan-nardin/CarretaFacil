@@ -9,9 +9,9 @@
   "author": "Nardin, Alan",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "path": "^0.12.7",
-    "sqlite3": "^4.0.4"
+    "sqlite3": "^4.0.4",
+    "swagger-ui-express": "^4.0.2"
   }
 }

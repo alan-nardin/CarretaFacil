@@ -1,13 +1,16 @@
 var sqlite3 = require('sqlite3').verbose();
 var path = require('path');
 var express = require('express');
-//var bodyParser = require('body-parser');
+
+var swaggerUi = require('swagger-ui-express');
+var swaggerDocument = require('./swagger.json');
 
 var dbPath = path.resolve(__dirname, 'database.db');
 var db = new sqlite3.Database(dbPath);
 var app = express();
 
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 db.serialize(function(){
 
@@ -24,7 +27,7 @@ db.serialize(function(){
     db.run(comando);
 });
 
-app.post('/registrar', function(req, res){
+app.post('/api/registrar', function(req, res){
 
     var comando = `
         REPLACE INTO Transmissor (Placa, Bateria, Latitude, Longitude, DataHora)
@@ -49,7 +52,7 @@ app.post('/registrar', function(req, res){
         resultado);
 });
 
-app.get('/listar', function(req, res){
+app.get('/api/listar', function(req, res){
 
     db.all('SELECT * FROM Transmissor', function(err, rows){
         if(err) throw err;
@@ -60,6 +63,6 @@ app.get('/listar', function(req, res){
 });
 
 app.listen(3000, function(){
-    console.log('Access http://localhost:3000/listar');
+    console.log('Access http://localhost:3000/api-docs');
 });
 

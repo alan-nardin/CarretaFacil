@@ -1,0 +1,57 @@
+{
+    "info": {
+      "title": "CarretaFacil API",
+      "version": "1.0.0",
+      "description": "RESTful API do projeto CarretaFacil para monitoramento de carretas estacionadas no pátio"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "swagger": "2.0",
+    "tags":[
+        {
+            "name": "transmissor",
+            "description": "Endpoints dos transmissores"
+        }
+    ],
+    "schemes": ["http"],
+    "paths": {
+        "/api/listar":{
+            "get":{
+                "tags": ["transmissor"],
+                "summary": "Lista transmissores",
+                "description": "Retorna o log de registro de todos os transmissores",
+                "produces": "application/json",
+                "responses":{
+                    "200": {
+                        "description": "Um array de transmissores"
+                    }
+                }
+            }
+        },
+        "/api/registrar":{
+            "post":{
+                "tags":["transmissor"],
+                "summary": "Registrar transmissor",
+                "description": "Insere ou atualiza os dados de um determinado transmissor",
+                "produces":"application/json",
+                "requestBody":{
+                    "content":{ 
+                        "application/json":{
+
+                        }
+                    }
+                },
+                "responses":{
+                    "200": {
+                        "description": "Transmissor atualizado com sucesso"
+                    }
+                }
+
+            }
+        }
+     },
+    "definitions": { },
+    "responses": { },
+    "parameters": { },
+    "securityDefinitions": { }
+  }
