@@ -37,10 +37,9 @@ app.post('/api/registrar', function(req, res){
     var resultado = function(err, row){
         if(err) throw err;
 
-        res
-            .status(200)
-            .json({mensagem: 'Transmissor atualizado com sucesso'})
-            .end();
+        res.status(200)
+           .json({mensagem: 'Transmissor atualizado com sucesso'})
+           .end();
     };
 
     db.run(
@@ -61,6 +60,22 @@ app.get('/api/listar', function(req, res){
         res.end();
     });
 });
+
+app.delete('/api/:placa', function(req, res){
+
+    var placa = req.param("placa");
+    
+    var resultado = function(err, row){
+        if(err) throw err;
+
+        res.status(200)
+           .json({mensagem: 'Transmissor removido com sucesso'})
+           .end();
+    };
+
+    db.run('DELETE FROM Transmissor WHERE Placa = ?', placa, resultado);
+
+})
 
 app.listen(3000, function(){
     console.log('Access http://localhost:3000/api-docs');

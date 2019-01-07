@@ -37,7 +37,8 @@
                 "requestBody":{
                     "content":{ 
                         "application/json":{
-
+                            "schema" : { "$ref" : "schema.json" },
+                            "example" : { "$ref" : "example.json" }
                         }
                     }
                 },
@@ -48,7 +49,27 @@
                 }
 
             }
-        }
+        },
+        "/api/{placa}":{
+            "delete":{
+                "tags": ["transmissor"],
+                "summary": "Remove transmissor",
+                "description": "Remove um determinado transmissor associado a uma placa",
+                "produces": "application/json",
+                "parameters":{
+                    "in": "path",
+                    "name": "placa",
+                    "type": "string",
+                    "required": true,
+                    "description": "Placa da carreta"
+                },
+                "responses":{
+                    "200": {
+                        "description": "Transmissor removido com sucesso"
+                    }
+                }
+            }
+        }        
      },
     "definitions": { },
     "responses": { },
