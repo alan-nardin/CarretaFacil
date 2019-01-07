@@ -1,78 +1,102 @@
 {
     "info": {
-      "title": "CarretaFacil API",
-      "version": "1.0.0",
-      "description": "RESTful API do projeto CarretaFacil para monitoramento de carretas estacionadas no pátio"
+        "title": "CarretaFacil API",
+        "version": "1.0.0",
+        "description": "RESTful API do projeto CarretaFacil para monitoramento de carretas estacionadas no pátio"
     },
     "host": "localhost:3000",
-    "basePath": "/",
+    "basePath": "./",
     "swagger": "2.0",
-    "tags":[
+    "tags": [
         {
             "name": "transmissor",
             "description": "Endpoints dos transmissores"
         }
     ],
-    "schemes": ["http"],
+    "schemes": [
+        "http"
+    ],
     "paths": {
-        "/api/listar":{
-            "get":{
-                "tags": ["transmissor"],
+        "/api/listar": {
+            "get": {
+                "tags": [
+                    "transmissor"
+                ],
                 "summary": "Lista transmissores",
                 "description": "Retorna o log de registro de todos os transmissores",
                 "produces": "application/json",
-                "responses":{
+                "responses": {
                     "200": {
                         "description": "Um array de transmissores"
                     }
                 }
             }
         },
-        "/api/registrar":{
-            "post":{
-                "tags":["transmissor"],
+        "/api/registrar": {
+            "post": {
+                "tags": [
+                    "transmissor"
+                ],
                 "summary": "Registrar transmissor",
                 "description": "Insere ou atualiza os dados de um determinado transmissor",
-                "produces":"application/json",
-                "requestBody":{
-                    "content":{ 
-                        "application/json":{
-                            "schema" : { "$ref" : "schema.json" },
-                            "example" : { "$ref" : "example.json" }
+                "produces": "application/json",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Objeto transmissor",
+                        "required": true,
+                        "schema" : { 
+                            "type" : "object",
+                            "properties":{
+                                "placa":{ "type": "string" },
+                                "bateria":{ "type": "integer" },
+                                "latitude":{ "type": "number" },
+                                "longitude":{ "type": "number" }
+                            } 
+                        },
+                        "example" : {
+                            "placa": "DZE-3456",
+                            "bateria": 30,
+                            "latitude": 123446.789,
+                            "longitude": 999888.333
                         }
                     }
-                },
-                "responses":{
+                ],
+                "responses": {
                     "200": {
                         "description": "Transmissor atualizado com sucesso"
                     }
                 }
-
             }
         },
-        "/api/{placa}":{
-            "delete":{
-                "tags": ["transmissor"],
+        "/api/{placa}": {
+            "delete": {
+                "tags": [
+                    "transmissor"
+                ],
                 "summary": "Remove transmissor",
                 "description": "Remove um determinado transmissor associado a uma placa",
                 "produces": "application/json",
-                "parameters":{
-                    "in": "path",
-                    "name": "placa",
-                    "type": "string",
-                    "required": true,
-                    "description": "Placa da carreta"
-                },
-                "responses":{
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "placa",
+                        "type": "string",
+                        "required": true,
+                        "description": "Placa da carreta"
+                    }
+                ],
+                "responses": {
                     "200": {
                         "description": "Transmissor removido com sucesso"
                     }
                 }
             }
-        }        
-     },
-    "definitions": { },
-    "responses": { },
-    "parameters": { },
-    "securityDefinitions": { }
-  }
+        }
+    },
+    "definitions": {},
+    "responses": {},
+    "parameters": {},
+    "securityDefinitions": {}
+}
